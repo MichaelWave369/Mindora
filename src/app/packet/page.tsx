@@ -31,7 +31,7 @@ export default function PacketPage() {
   const packetMd = `# Wellness Packet\n\nRange: ${from} to ${to}\n\n## Entries\n${selectedEntries.map((e) => `- ${e.title || 'Untitled'}: ${e.text.slice(0, 120)}`).join('\n')}\n\n## Mood insights\n${insights.map((i) => `- ${i}`).join('\n')}\n\n## Top tags\n${Object.entries(tags).map(([k, v]) => `- ${k}: ${v}`).join('\n')}\n\n## Breathing completions\n- ${breaths.length}\n\n## Crisis plan\n${resources.filter((r) => r.type === 'hotline').map((r) => `- ${r.label}: ${r.value}`).join('\n')}\n\n> Not medical advice. Not a substitute for a licensed professional.`;
 
   return (
-    <section className="space-y-4">
+    <section data-testid="packet-page" className="space-y-4">
       <div className="card">
         <h2 className="font-semibold">Wellness Packet</h2>
         <div className="flex gap-2 mt-2"><input type="date" className="border rounded p-2" value={from} onChange={(e) => setFrom(e.target.value)} /><input type="date" className="border rounded p-2" value={to} onChange={(e) => setTo(e.target.value)} /></div>

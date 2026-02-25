@@ -10,3 +10,5 @@ backups/
 *.backup.json
 *.enc.json
 .DS_Store
+
+tsconfig.tsbuildinfo
