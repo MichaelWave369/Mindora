@@ -1,5 +1,6 @@
 import { demoReflection } from './demo';
 import type { AiProvider } from '@/types';
+import { isTestMode } from '@/lib/env';
 
 interface ReflectInput {
   provider: AiProvider;
@@ -10,7 +11,7 @@ interface ReflectInput {
 }
 
 export async function reflectWithProvider(input: ReflectInput) {
-  if (input.provider === 'demo') {
+  if (isTestMode() || input.provider === 'demo') {
     return demoReflection(input.text, input.mode);
   }
 
@@ -23,6 +24,11 @@ export async function reflectWithProvider(input: ReflectInput) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ model: input.model || 'llama3.1', prompt, stream: false })
     });
+
+    if (!res.ok) {
+      return demoReflection(input.text, input.mode);
+    }
+
     const data = await res.json();
     return data.response as string;
   }
@@ -33,7 +39,9 @@ export async function reflectWithProvider(input: ReflectInput) {
     xai: process.env.XAI_API_KEY
   };
 
-  if (!keyMap[input.provider]) return demoReflection(input.text, input.mode);
+  if (!keyMap[input.provider]) {
+    return demoReflection(input.text, input.mode);
+  }
 
   return demoReflection(input.text, input.mode);
 }

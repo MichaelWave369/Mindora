@@ -35,7 +35,7 @@ export default function BreathingPage() {
   };
 
   return (
-    <section className="space-y-4">
+    <section data-testid="breathing-page" className="space-y-4">
       <div className="card">
         <h2 className="font-semibold">Guided Breathing</h2>
         <div className="mt-2 flex flex-wrap gap-2">{Object.values(exercises).map((e) => <button key={e.id} className={selected === e.id ? 'btn' : 'btn-secondary'} onClick={() => setSelected(e.id)}>{e.label}</button>)}</div>

@@ -45,7 +45,7 @@ export default function SettingsPage() {
   };
 
   return (
-    <section className="space-y-4">
+    <section data-testid="settings-page" className="space-y-4">
       <div className="card space-y-2">
         <h2 className="font-semibold">Provider settings</h2>
         <select className="border rounded p-2" value={settings.provider} onChange={(e) => save({ provider: e.target.value as any })}>{['demo', 'ollama', 'openai', 'anthropic', 'xai'].map((p) => <option key={p} value={p}>{p}</option>)}</select>

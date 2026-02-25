@@ -34,7 +34,7 @@ export default function SharePage() {
   if (!enabled) return <div className="card">Feature disabled in settings.</div>;
 
   return (
-    <section className="card space-y-2">
+    <section data-testid="share-page" className="card space-y-2">
       <h2 className="font-semibold">Share to CoEvo (manual capsule)</h2>
       <select className="border rounded p-2" onChange={(e) => setSelected(Number(e.target.value))}>
         <option>Select entry</option>

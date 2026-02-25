@@ -19,7 +19,7 @@ export default function MoodPage() {
   const avg = recent.length ? (recent.reduce((a, b) => a + b.mood, 0) / recent.length).toFixed(2) : 'N/A';
 
   return (
-    <section className="space-y-4">
+    <section data-testid="mood-page" className="space-y-4">
       <div className="card">
         <h2 className="font-semibold">Mood Dashboard</h2>
         <div className="flex gap-2 mt-2">{[7, 30, 90].map((r) => <button key={r} className={range === r ? 'btn' : 'btn-secondary'} onClick={() => setRange(r)}>{r}d</button>)}</div>

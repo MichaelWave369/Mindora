@@ -1,5 +1,7 @@
 # Mindora
 
+![CI](https://github.com/MichaelWave369/Mindora/actions/workflows/ci.yml/badge.svg)
+
 **Tagline:** Your private pocket therapist & journal.
 
 **Core promise:** Everything you need to feel better stays on your computer.
@@ -9,6 +11,8 @@
 - No telemetry, no analytics, no automatic cloud upload
 - Optional AI reflection providers can be enabled in settings
 - PII redaction runs before cloud providers
+
+Read more at `/privacy` in the app.
 
 ## Safety disclaimer
 Mindora is not medical advice and is not a substitute for a licensed professional.
@@ -26,6 +30,7 @@ If you're in danger, call local emergency services immediately.
 - Default: Demo mode and Ollama
 - Optional: OpenAI / Anthropic / xAI (configure environment keys)
 - Provider status endpoint: `/api/providers/status`
+- In `TEST_MODE=1`, reflection is deterministic Demo-only (no provider network calls)
 
 ## Run
 ```bash
@@ -35,7 +40,9 @@ pnpm dev
 
 ## Test
 ```bash
+pnpm lint
 pnpm test
+pnpm build
 pnpm test:e2e
 ```
 
