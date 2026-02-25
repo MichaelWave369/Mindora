@@ -192,7 +192,7 @@ export default function JournalPage() {
             Export Entry (Markdown)
           </button>
 
-          <Link aria-label="Export Entry PDF" className="btn-secondary" href="/print/entry">
+          <Link aria-label="Export Entry (PDF)" className="btn-secondary" href="/print/entry">
             Export Entry (PDF)
           </Link>
         </div>

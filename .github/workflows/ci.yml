@@ -21,30 +21,29 @@ jobs:
         run: |
           node -e "const fs=require('fs'); if(!fs.existsSync('pnpm-lock.yaml')){console.error('::error::pnpm-lock.yaml missing. Run pnpm install and commit it.'); process.exit(1)}"
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.3
+          run_install: false
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - name: Enable corepack
-        run: corepack enable
-
-      - name: Prepare pnpm
-        run: corepack prepare pnpm@9.12.3 --activate
 
       - name: Show versions
         run: |
           node --version
           pnpm --version
 
-      - name: Get pnpm store path
-        id: pnpm-store
-        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
+      - name: Configure pnpm store path
+        run: pnpm config set store-dir .pnpm-store
 
       - name: Cache pnpm store
         uses: actions/cache@v4
         with:
-          path: ${{ steps.pnpm-store.outputs.STORE_PATH }}
+          path: .pnpm-store
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
@@ -79,30 +78,29 @@ jobs:
         run: |
           node -e "const fs=require('fs'); if(!fs.existsSync('pnpm-lock.yaml')){console.error('::error::pnpm-lock.yaml missing. Run pnpm install and commit it.'); process.exit(1)}"
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.3
+          run_install: false
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - name: Enable corepack
-        run: corepack enable
-
-      - name: Prepare pnpm
-        run: corepack prepare pnpm@9.12.3 --activate
 
       - name: Show versions
         run: |
           node --version
           pnpm --version
 
-      - name: Get pnpm store path
-        id: pnpm-store
-        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
+      - name: Configure pnpm store path
+        run: pnpm config set store-dir .pnpm-store
 
       - name: Cache pnpm store
         uses: actions/cache@v4
         with:
-          path: ${{ steps.pnpm-store.outputs.STORE_PATH }}
+          path: .pnpm-store
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
